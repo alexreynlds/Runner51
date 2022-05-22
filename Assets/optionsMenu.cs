@@ -23,11 +23,7 @@ public class optionsMenu : MonoBehaviour
         for (int i = 0; i < resolutions.Length; i++){
             string option = resolutions[i].width + " x " + resolutions[i].height + " @ " + resolutions[i].refreshRate + "hz";
             options.Add(option);
-            
-            // if(resolutions[i].width == Screen.currentResolution.width && 
-            //    resolutions[i].height == Screen.currentResolution.height){
-            //     currentResIndex = i;
-            // }
+
             if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height){
                 currentResIndex = i;
             }
@@ -43,8 +39,16 @@ public class optionsMenu : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
-    public void setVolume(float volume){
+    public void setMainVolume(float volume){
+        audioMixer.SetFloat("mainVolume", volume);
+    }
+
+    public void setMusicVolume(float volume){
         audioMixer.SetFloat("musicVolume", volume);
+    }
+
+        public void setEffectVolume(float volume){
+        audioMixer.SetFloat("effectVolume", volume);
     }
 
     public void setQuality(int qualityIndex){

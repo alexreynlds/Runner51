@@ -2,7 +2,7 @@
 
 🌟 This is the repo for the unity files 🌟
 
-❗ This project is built for Unity version 2020.3.30f1 ❗
+❗ This project is built for Unity version 2020.3.32f1 ❗
 
 ### COMMITING TO THE REPO
 - All commits should include:

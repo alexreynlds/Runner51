@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovementController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     //========================================
     // Creating an instance of the controller
@@ -31,36 +31,25 @@ public class MovementController : MonoBehaviour
     public int gameMode;
     public GameObject SideCam;
     public GameObject BackCam;
-    public GameObject player;
 
     void Awake(){
         //Set the controller
         Controls = new InputMaster();
         gameMode = 0;
+
+        Controls.Player.Test.performed += _ => Test();
     }
 
     void Start(){
         Atoms = PlayerPrefs.GetInt(highScoreKey,0);
-        Debug.Log("epic");
-        player = GameObject.Find("Player");
-    }
-
-    void Update(){
-        Debug.Log("epic");        
     }
 
     void FixedUpdate()
     {   
-
         if(gameMode == 0){
         //Update the left or right depnding on the horizontal level - Detemined by the inputs
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
         }
-
-        // if(player.transform.position.y <= -10){
-        //     GameObject startPoint = GameObject.Find("startPoint");
-        //     player.transform.position = startPoint.transform.position;
-        // }
     }
 
     public void Jump(InputAction.CallbackContext context){
@@ -86,11 +75,7 @@ public class MovementController : MonoBehaviour
         horizontal = context.ReadValue<Vector2>().x;
     }
 
-    // public void OnCollisionEnter(Collision col) {
-    //     Debug.Log("Epic");
-    // }
-
-    void Test(){
+    public void Test(){
         Atoms++;
     }
 

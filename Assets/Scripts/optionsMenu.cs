@@ -58,4 +58,8 @@ public class optionsMenu : MonoBehaviour
     public void setFullscreen(bool isFullscreen){
         Screen.fullScreen = isFullscreen;
     }
+
+    public void resetData(){
+        PlayerPrefs.DeleteAll();
+    }
 }

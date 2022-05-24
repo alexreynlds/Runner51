@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4536774203023890421}
   m_Layer: 0
   m_Name: Atom
-  m_TagString: Untagged
+  m_TagString: Atom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 1765462848562546274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 8871048787745599677}
   m_Father: {fileID: 0}
@@ -155,30 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f8ccd6ab726fd4b8d7a31432a89c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1.1616669
-      value: 1.0003967
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 1
-    m_PostInfinity: 1
-    m_RotationOrder: 4
+  amplitude: 0.5
+  frequency: 1
 --- !u!1 &3352083133373554886
 GameObject:
   m_ObjectHideFlags: 0

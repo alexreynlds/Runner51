@@ -105,21 +105,13 @@ public class playerController : MonoBehaviour
         Atoms++;
     }
 
-    private void OnCollisionEnter(Collision other) {
-        Debug.Log(other.gameObject.name);
-        // if(horizontal == 1){
-        //     rb.velocity = new Vector2(-100, rb.velocity.y); 
-            // rb.AddExplosionForce(10000, player.transform.position, 50);
-        //}
-    }
-
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.name == "1Trigger"){
             SideCam.SetActive(false);
             BackCam.SetActive(true);
             gameMode = 1;
         }
-        if(other.gameObject.name == "Atom"){
+        if(other.gameObject.tag == "Atom"){
             Atoms++;
             Destroy(other.gameObject);
         }

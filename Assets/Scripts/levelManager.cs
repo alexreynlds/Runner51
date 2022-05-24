@@ -6,6 +6,7 @@ public class levelManager : MonoBehaviour
 {
 
     public float startingTime = 300;
+    public int levelScore = 0;
     // Start is called before the first frame update
     void Start()
     {

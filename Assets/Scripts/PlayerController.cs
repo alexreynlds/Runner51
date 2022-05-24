@@ -40,6 +40,7 @@ public class playerController : MonoBehaviour
         Controls = new InputMaster();
         gameMode = 0;
 
+        
         Controls.Player.Test.performed += _ => Test();
 
     }
@@ -54,16 +55,14 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {   
-
+        Debug.Log(lane);
         if(gameMode == 0){
         //Update the left or right depnding on the horizontal level - Detemined by the inputs
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
         }
 
-        if(gameMode == 1){
-            if(lane == 0){
-                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
-            }
+        if(gameMode == 1){  
+            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, lane);
             rb.velocity = new Vector2(2 * speed, rb.velocity.y);
         }
 
@@ -98,10 +97,34 @@ public class playerController : MonoBehaviour
             horizontal = context.ReadValue<Vector2>().x;
         }
         //Lane Movement
+        if(gameMode == 1){
+            float laneMove = context.ReadValue<Vector2>().x;
+            if(context.performed){
+                changeLane(laneMove);
+            }
+            // Controls.Player.Movement.performed += _ => Debug.Log(context.ReadValue<Vector2>().x);
+            // Controls.Player.Movement.triggered += _ => changeLane(laneMove);
+            // if(Controls.Player.Movement.performed){
+            //     Debug.Log("moved");
+            //     changeLane(laneMove);
+            // }
+            // if(Controls.Player.Movement.triggered 
+// a            Debug.Log(laneMove);
+        }
+    }
+
+    void changeLane(float laneMove){
+        if(laneMove == 1 && lane !=-2){
+            Debug.Log("moved left");
+            lane = lane -1;
+        }
+        if(laneMove == -1 && lane !=2){
+            lane = lane + 1;
+        }
     }
 
     void Test(){
-        Debug.Log("Test");
+        Debug.Log("Epic");
         Atoms++;
     }
 
@@ -110,10 +133,6 @@ public class playerController : MonoBehaviour
             SideCam.SetActive(false);
             BackCam.SetActive(true);
             gameMode = 1;
-        }
-        if(other.gameObject.tag == "Atom"){
-            Atoms++;
-            Destroy(other.gameObject);
         }
     }
 

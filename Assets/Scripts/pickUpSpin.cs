@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class pickUpSpin : MonoBehaviour
 {
+    public AudioSource soundEffect;
+
     public float amplitude = 0.5f;
     public float frequency = 1f;
     private GameObject atom;
@@ -23,5 +25,13 @@ public class pickUpSpin : MonoBehaviour
         tempPos.y += Mathf.Sin (Time.fixedTime * Mathf.PI * frequency) * amplitude;
  
         transform.position = tempPos;
+    }
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag=="Player"){
+            other.gameObject.GetComponent<playerController>().Atoms++;
+            soundEffect.Play();
+            Destroy(soundEffect.gameObject, 1f);
+            Destroy(atom, 0.2f);
+        }
     }
 }

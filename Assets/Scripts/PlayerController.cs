@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MovementController : MonoBehaviour
+public class playerController : MonoBehaviour
 {
     //========================================
     // Creating an instance of the controller
@@ -19,7 +19,7 @@ public class MovementController : MonoBehaviour
     public LayerMask groundLayer;
 
     private float horizontal;
-    private float speed = 8f;
+    private float speed = 12f;
     private float jumpPower = 14f;
 
     //==============================
@@ -31,22 +31,25 @@ public class MovementController : MonoBehaviour
     public int gameMode;
     public GameObject SideCam;
     public GameObject BackCam;
-    public GameObject player;
+    private GameObject player;
+
+    private int lane = 0;
 
     void Awake(){
         //Set the controller
         Controls = new InputMaster();
         gameMode = 0;
+
+        Controls.Player.Test.performed += _ => Test();
+
     }
 
     void Start(){
         Atoms = PlayerPrefs.GetInt(highScoreKey,0);
-        Debug.Log("epic");
         player = GameObject.Find("Player");
-    }
 
-    void Update(){
-        Debug.Log("epic");        
+        GameObject startPoint = GameObject.Find("startPoint");
+        player.transform.position = startPoint.transform.position;
     }
 
     void FixedUpdate()
@@ -57,10 +60,17 @@ public class MovementController : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
         }
 
-        // if(player.transform.position.y <= -10){
-        //     GameObject startPoint = GameObject.Find("startPoint");
-        //     player.transform.position = startPoint.transform.position;
-        // }
+        if(gameMode == 1){
+            if(lane == 0){
+                player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
+            }
+            rb.velocity = new Vector2(2 * speed, rb.velocity.y);
+        }
+
+        if(player.transform.position.y <= -10){
+            GameObject startPoint = GameObject.Find("startPoint");
+            player.transform.position = startPoint.transform.position;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context){
@@ -83,15 +93,36 @@ public class MovementController : MonoBehaviour
     // Sets the horizontal according to input left/right
     //===================================================
     public void Move(InputAction.CallbackContext context){
-        horizontal = context.ReadValue<Vector2>().x;
+        //Platforming Movement
+        if(gameMode == 0){
+            horizontal = context.ReadValue<Vector2>().x;
+        }
+        //Lane Movement
     }
 
-    // public void OnCollisionEnter(Collision col) {
-    //     Debug.Log("Epic");
-    // }
-
     void Test(){
+        Debug.Log("Test");
         Atoms++;
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        Debug.Log(other.gameObject.name);
+        // if(horizontal == 1){
+        //     rb.velocity = new Vector2(-100, rb.velocity.y); 
+            // rb.AddExplosionForce(10000, player.transform.position, 50);
+        //}
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.name == "1Trigger"){
+            SideCam.SetActive(false);
+            BackCam.SetActive(true);
+            gameMode = 1;
+        }
+        if(other.gameObject.name == "Atom"){
+            Atoms++;
+            Destroy(other.gameObject);
+        }
     }
 
     void OnEnable(){

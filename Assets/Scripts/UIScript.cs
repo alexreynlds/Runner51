@@ -6,19 +6,20 @@ using TMPro;
 public class UIScript : MonoBehaviour
 {
     private GameObject Player;
+    private levelManager levelManager;
     private TextMeshProUGUI AtomsText;
     private TextMeshProUGUI TimeText;
     int score = 0;
 
     float currentTime = 0f;
-    float startingTime = 300;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
+        levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
         AtomsText = GameObject.Find("AtomsText").GetComponent<TextMeshProUGUI>();
         TimeText = GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>();
-        currentTime = startingTime;
+        currentTime = levelManager.startingTime;
     }
 
     // Update is called once per frame

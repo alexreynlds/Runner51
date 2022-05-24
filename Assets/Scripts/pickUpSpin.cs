@@ -28,7 +28,7 @@ public class pickUpSpin : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag=="Player"){
-            other.gameObject.GetComponent<playerController>().Atoms++;
+            other.gameObject.GetComponent<playerController>().atoms++;
             soundEffect.Play();
             Destroy(soundEffect.gameObject, 1f);
             Destroy(atom, 0.2f);

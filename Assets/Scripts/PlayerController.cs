@@ -25,7 +25,7 @@ public class playerController : MonoBehaviour
     //==============================
     // Setting the player variables
     //==============================
-    public int Atoms;
+    public int atoms;
     string highScoreKey = "HighScore";
 
     public int gameMode;
@@ -46,7 +46,7 @@ public class playerController : MonoBehaviour
     }
 
     void Start(){
-        Atoms = PlayerPrefs.GetInt(highScoreKey,0);
+        atoms = PlayerPrefs.GetInt(highScoreKey,0);
         player = GameObject.Find("Player");
 
         GameObject startPoint = GameObject.Find("startPoint");
@@ -125,7 +125,7 @@ public class playerController : MonoBehaviour
 
     void Test(){
         Debug.Log("Epic");
-        Atoms++;
+        atoms++;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -133,6 +133,9 @@ public class playerController : MonoBehaviour
             SideCam.SetActive(false);
             BackCam.SetActive(true);
             gameMode = 1;
+        }
+        if(other.gameObject.name == "endPoint"){
+            GameObject.Find("UICanvas").GetComponent<UIScript>().showEndScreen();
         }
     }
 

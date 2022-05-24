@@ -31,7 +31,7 @@ public class pickUpSpin : MonoBehaviour
             other.gameObject.GetComponent<playerController>().atoms++;
             soundEffect.Play();
             Destroy(soundEffect.gameObject, 1f);
-            Destroy(atom, 0.2f);
+            Destroy(atom, 0.05f);
         }
     }
 }

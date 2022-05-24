@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIScript : MonoBehaviour
 {
+    public int nextSceneLoad;
+
     private GameObject Player;
     private levelManager levelManager;
     private TextMeshProUGUI AtomsText;
@@ -18,13 +20,13 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         Player = GameObject.Find("Player");
         levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
         AtomsText = GameObject.Find("AtomsText").GetComponent<TextMeshProUGUI>();
         TimeText = GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>();
 
-        // inGame = GameObject.Find("inGame");
-        // endScreen = GameObject.Find("endScreen");
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
 
         currentTime = levelManager.startingTime;
     }
@@ -45,6 +47,11 @@ public class UIScript : MonoBehaviour
         GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
         GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
         GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
+    }
+
+    public void moveToNextLevel(){
+        SceneManager.LoadScene(nextSceneLoad);
+        PlayerPrefs.SetInt("levelAt", nextSceneLoad);
     }
 
     public void displayTime(float currentTime){

@@ -99,6 +99,9 @@ public class playerController : MonoBehaviour
         //Lane Movement
         if(gameMode == 1){
             float laneMove = context.ReadValue<Vector2>().x;
+            if(context.performed){
+                changeLane(laneMove);
+            }
             // Controls.Player.Movement.performed += _ => Debug.Log(context.ReadValue<Vector2>().x);
             // Controls.Player.Movement.triggered += _ => changeLane(laneMove);
             // if(Controls.Player.Movement.performed){

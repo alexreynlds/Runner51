@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour
     //==============================
     // Setting the player variables
     //==============================
+    public int lives;
     public int atoms;
     string highScoreKey = "HighScore";
 
@@ -40,12 +41,12 @@ public class playerController : MonoBehaviour
         Controls = new InputMaster();
         gameMode = 0;
 
-        
         Controls.Player.Test.performed += _ => Test();
 
     }
 
     void Start(){
+        lives = PlayerPrefs.GetInt("playerLives");
         atoms = PlayerPrefs.GetInt(highScoreKey,0);
         player = GameObject.Find("Player");
 
@@ -55,7 +56,8 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {   
-        Debug.Log(lane);
+        Debug.Log(PlayerPrefs.GetInt("playerLives"));
+        // Debug.Log(lane);
         if(gameMode == 0){
         //Update the left or right depnding on the horizontal level - Detemined by the inputs
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
@@ -67,8 +69,7 @@ public class playerController : MonoBehaviour
         }
 
         if(player.transform.position.y <= -10){
-            GameObject startPoint = GameObject.Find("startPoint");
-            player.transform.position = startPoint.transform.position;
+            doDeath();
         }
     }
 
@@ -117,7 +118,7 @@ public class playerController : MonoBehaviour
 
     void Test(){
         Debug.Log("Epic");
-        atoms++;
+        doDeath();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -128,6 +129,18 @@ public class playerController : MonoBehaviour
         }
         if(other.gameObject.name == "endPoint"){
             GameObject.Find("UICanvas").GetComponent<UIScript>().showEndScreen();
+        }
+    }
+
+    public void doDeath(){
+        if(lives > 0){
+            lives--;
+            PlayerPrefs.SetInt("playerLives", lives);    
+            GameObject startPoint = GameObject.Find("startPoint");
+            player.transform.position = startPoint.transform.position;      
+        } 
+        if (lives == 0){
+            GameObject.Find("UICanvas").GetComponent<UIScript>().showDeathScreen();
         }
     }
 

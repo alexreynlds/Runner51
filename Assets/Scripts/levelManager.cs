@@ -27,6 +27,7 @@ public class levelManager : MonoBehaviour
 
     //When level is loaded set the scores to 0 and set the current time (displayed) to the starting time for the level
     void Start(){
+        Time.timeScale = 1;
         player = GameObject.Find("Player");
         currentTime = startingTime;
         atomScore = 0;

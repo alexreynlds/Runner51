@@ -12,7 +12,10 @@ public class UIScript : MonoBehaviour
     private levelManager levelManager;
     private TextMeshProUGUI AtomsText;
     private TextMeshProUGUI TimeText;
+    private TextMeshProUGUI livesText;
+
     public GameObject inGame;
+    public GameObject deathScreen;
     public GameObject endScreen;
     int score = 0;
 
@@ -20,11 +23,11 @@ public class UIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
         Player = GameObject.Find("Player");
         levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
         AtomsText = GameObject.Find("AtomsText").GetComponent<TextMeshProUGUI>();
         TimeText = GameObject.Find("TimeText").GetComponent<TextMeshProUGUI>();
+        livesText = GameObject.Find("livesText").GetComponent<TextMeshProUGUI>();
 
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -36,6 +39,7 @@ public class UIScript : MonoBehaviour
     {
         score++;
         AtomsText.text = Player.GetComponent<playerController>().atoms.ToString();
+        livesText.text = Player.GetComponent<playerController>().lives.ToString();
     }
 
     public void showEndScreen(){
@@ -63,7 +67,19 @@ public class UIScript : MonoBehaviour
         TimeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void showDeathScreen(){
+        inGame.SetActive(false);
+        deathScreen.SetActive(true);
+
+    }
+
     public void returnToMenu(){
+        SceneManager.LoadScene(0);
+    }
+
+    public void noLivesReturnToMenu(){
+        PlayerPrefs.SetInt("hasStarted", 0);
+        PlayerPrefs.SetInt("levelAt", 1);
         SceneManager.LoadScene(0);
     }
 }

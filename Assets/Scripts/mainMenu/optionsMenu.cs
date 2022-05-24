@@ -61,6 +61,7 @@ public class optionsMenu : MonoBehaviour
 
     public void resetData(){
         PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetInt("hasStarted", 0);
         PlayerPrefs.SetInt("levelAt", 1);
     }
 }

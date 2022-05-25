@@ -42,7 +42,7 @@ public class playerController : MonoBehaviour
         gameMode = 0;
 
         Controls.Player.Test.performed += _ => Test();
-
+        Controls.Player.Pause.performed += _ => GameObject.Find("UICanvas").GetComponent<UIScript>().pauseGame();
     }
 
     void Start(){

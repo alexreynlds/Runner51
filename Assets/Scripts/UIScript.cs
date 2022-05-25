@@ -17,12 +17,16 @@ public class UIScript : MonoBehaviour
     public GameObject inGame;
     public GameObject deathScreen;
     public GameObject endScreen;
+    public GameObject pauseScreen;
+
     int score = 0;
+    bool isPaused;
 
     float currentTime = 0f;
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         Player = GameObject.Find("Player");
         levelManager = GameObject.Find("levelManager").GetComponent<levelManager>();
         AtomsText = GameObject.Find("AtomsText").GetComponent<TextMeshProUGUI>();
@@ -40,6 +44,20 @@ public class UIScript : MonoBehaviour
         score++;
         AtomsText.text = Player.GetComponent<playerController>().atoms.ToString();
         livesText.text = Player.GetComponent<playerController>().lives.ToString();
+    }
+
+    public void pauseGame(){
+        if(isPaused){
+            isPaused = false;
+            pauseScreen.SetActive(false);
+            inGame.SetActive(true);
+            Time.timeScale = 1;
+        } else{
+            isPaused = true;
+            pauseScreen.SetActive(true);
+            inGame.SetActive(false);
+            Time.timeScale = 0;
+        }
     }
 
     public void showEndScreen(){

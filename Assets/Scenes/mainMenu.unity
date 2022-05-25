@@ -1632,7 +1632,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &308679229
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 223227750}
         m_TargetAssemblyTypeName: mainMenu, Assembly-CSharp
         m_MethodName: quitGame
         m_Mode: 1
@@ -2772,6 +2772,7 @@ MonoBehaviour:
   - {fileID: 1352096239}
   - {fileID: 1263419304}
   levelAt: 0
+  hasStarted: 0
 --- !u!4 &650682138
 Transform:
   m_ObjectHideFlags: 0
@@ -6296,7 +6297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 600 x 400
+  m_text: 1920 x 1080
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8155,7 +8156,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1882572300
@@ -8670,18 +8671,18 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 600 x 400
+    - m_Text: 1920 x 1080
       m_Image: {fileID: 0}
     - m_Text: 1280 x 720
       m_Image: {fileID: 0}
-    - m_Text: 1920 x 1080
+    - m_Text: 600 x 400
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 675539763}
         m_TargetAssemblyTypeName: optionsMenu, Assembly-CSharp
-        m_MethodName: setQuality
+        m_MethodName: setReso
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

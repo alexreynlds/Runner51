@@ -59,9 +59,9 @@ public class playerController : MonoBehaviour
 
     void FixedUpdate()
     {   
-        Debug.Log(PlayerPrefs.GetInt("playerLives"));
         if(gameMode == 0){
         //Update the left or right depnding on the horizontal level - Detemined by the inputs
+        player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, 0);
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
         }
 
@@ -101,12 +101,10 @@ public class playerController : MonoBehaviour
             var rotationVector = playerModel.transform.rotation.eulerAngles;
             
             if(horizontal == 1){
-                // playerModel.Transform.rotation.y = 0;
                 rotationVector.y = 0;
             }
             if(horizontal == -1){
                 rotationVector.y = 180;
-                // playerModel.Transform.rotation.y = 180;
             }
             playerModel.transform.rotation = Quaternion.Euler(rotationVector);
         }
@@ -149,6 +147,16 @@ public class playerController : MonoBehaviour
                 Debug.Log("Triggered");
                 GameObject.Find("levelManager").GetComponent<roadSpawner>().moveRoad();
             }            
+        }
+        if(other.gameObject.tag == "Cactus"){
+            doDeath();
+        }        
+        if(other.gameObject.tag == "enemyBody"){
+            doDeath();
+        }
+        if(other.gameObject.tag == "enemyHead"){
+            Destroy(other.transform.parent.gameObject);
+            atoms++;
         }
     }
 

@@ -42,7 +42,7 @@ public class levelManager : MonoBehaviour
     //Calculate the total score from the atom score and the time score.
     public void calcScore(){
         atomScore = player.GetComponent<playerController>().atoms * 1000;
-        timeScore = (int)currentTime * 1000;
+        timeScore = (int)currentTime * 100;
         levelScore = atomScore + timeScore;
     }
 }

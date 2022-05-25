@@ -100,6 +100,7 @@ public class UIScript : MonoBehaviour
     }
 
     public void showDeathScreen(){
+        Time.timeScale = 0;
         inGame.SetActive(false);
         runnerScreen.SetActive(false);
         deathScreen.SetActive(true);

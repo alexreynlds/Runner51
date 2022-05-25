@@ -7,6 +7,9 @@ TagManager:
   - Atom
   - Life
   - autoSpawnTrigger
+  - Cactus
+  - enemyBody
+  - enemyHead
   layers:
   - Default
   - TransparentFX

@@ -61,7 +61,7 @@ public class UIScript : MonoBehaviour
     }
 
     public void showEndScreen(){
-        Debug.Log(currentTime);
+        // Debug.Log(currentTime);
         Time.timeScale = 0;
         levelManager.calcScore();
         inGame.SetActive(false);
@@ -69,13 +69,19 @@ public class UIScript : MonoBehaviour
         GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
         GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
         GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
+
+        //If the final score is greater than the current high score for the level, update it.
+        int finalScore = levelManager.levelScore;
+        if(finalScore > PlayerPrefs.GetInt("score1")){
+            PlayerPrefs.SetInt("score1", finalScore);
+        }
     }
 
     public void moveToNextLevel(){
         int lives = Player.GetComponent<playerController>().lives;
         PlayerPrefs.SetInt("playerLives", lives);
-        SceneManager.LoadScene(nextSceneLoad);
         PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+        SceneManager.LoadScene(nextSceneLoad);
     }
 
     public void displayTime(float currentTime){
@@ -97,11 +103,13 @@ public class UIScript : MonoBehaviour
         int lives = Player.GetComponent<playerController>().startLives;
         PlayerPrefs.SetInt("playerLives", lives);
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void noLivesReturnToMenu(){
         PlayerPrefs.SetInt("hasStarted", 0);
         PlayerPrefs.SetInt("levelAt", 1);
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }

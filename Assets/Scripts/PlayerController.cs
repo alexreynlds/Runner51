@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour
     // Setting the player variables
     //==============================
     public int lives;
+    public int startLives;
     public int atoms;
     string highScoreKey = "HighScore";
 
@@ -47,6 +48,7 @@ public class playerController : MonoBehaviour
 
     void Start(){
         lives = PlayerPrefs.GetInt("playerLives");
+        startLives = PlayerPrefs.GetInt("playerLives");
         atoms = PlayerPrefs.GetInt(highScoreKey,0);
         player = GameObject.Find("Player");
 

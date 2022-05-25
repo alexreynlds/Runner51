@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffect: {fileID: 3313629653764696519}
-  amplitude: 0.5
+  amplitude: 0.25
   frequency: 1
 --- !u!82 &3313629653764696519
 AudioSource:

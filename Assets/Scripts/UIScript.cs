@@ -72,6 +72,8 @@ public class UIScript : MonoBehaviour
     }
 
     public void moveToNextLevel(){
+        int lives = Player.GetComponent<playerController>().lives;
+        PlayerPrefs.SetInt("playerLives", lives);
         SceneManager.LoadScene(nextSceneLoad);
         PlayerPrefs.SetInt("levelAt", nextSceneLoad);
     }
@@ -92,6 +94,8 @@ public class UIScript : MonoBehaviour
     }
 
     public void returnToMenu(){
+        int lives = Player.GetComponent<playerController>().startLives;
+        PlayerPrefs.SetInt("playerLives", lives);
         SceneManager.LoadScene(0);
     }
 

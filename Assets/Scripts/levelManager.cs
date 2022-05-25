@@ -18,6 +18,7 @@ public class levelManager : MonoBehaviour
     public float startingTime;
     public int levelScore = 0;
     public int levelHighScore;
+    public int level;
 
     float currentTime = 0f;
 

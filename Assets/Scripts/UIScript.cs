@@ -61,7 +61,6 @@ public class UIScript : MonoBehaviour
     }
 
     public void showEndScreen(){
-        // Debug.Log(currentTime);
         Time.timeScale = 0;
         levelManager.calcScore();
         inGame.SetActive(false);
@@ -69,18 +68,18 @@ public class UIScript : MonoBehaviour
         GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
         GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
         GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
-
+        PlayerPrefs.SetInt("levelAt", nextSceneLoad);
         //If the final score is greater than the current high score for the level, update it.
         int finalScore = levelManager.levelScore;
-        if(finalScore > PlayerPrefs.GetInt("score1")){
-            PlayerPrefs.SetInt("score1", finalScore);
+        string score = "score" + levelManager.level;
+        if(finalScore > PlayerPrefs.GetInt(score)){
+            PlayerPrefs.SetInt(score, finalScore);
         }
     }
 
     public void moveToNextLevel(){
         int lives = Player.GetComponent<playerController>().lives;
         PlayerPrefs.SetInt("playerLives", lives);
-        PlayerPrefs.SetInt("levelAt", nextSceneLoad);
         SceneManager.LoadScene(nextSceneLoad);
     }
 

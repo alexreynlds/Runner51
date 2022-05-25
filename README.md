@@ -17,4 +17,3 @@
 ### THE MAIN BRANCH
 - The `main` branch should be for completed code
 - Once your code has been tested and reviewed by others in the team you should push it to `main`
- 

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Atom
   - Life
+  - autoSpawnTrigger
   layers:
   - Default
   - TransparentFX

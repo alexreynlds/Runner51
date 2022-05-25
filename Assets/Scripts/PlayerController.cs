@@ -34,6 +34,7 @@ public class playerController : MonoBehaviour
     public GameObject SideCam;
     public GameObject BackCam;
     private GameObject player;
+    public GameObject playerModel;
 
     private int lane = 0;
 
@@ -59,7 +60,6 @@ public class playerController : MonoBehaviour
     void FixedUpdate()
     {   
         Debug.Log(PlayerPrefs.GetInt("playerLives"));
-        // Debug.Log(lane);
         if(gameMode == 0){
         //Update the left or right depnding on the horizontal level - Detemined by the inputs
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);          
@@ -98,6 +98,17 @@ public class playerController : MonoBehaviour
         //Platforming Movement
         if(gameMode == 0){
             horizontal = context.ReadValue<Vector2>().x;
+            var rotationVector = playerModel.transform.rotation.eulerAngles;
+            
+            if(horizontal == 1){
+                // playerModel.Transform.rotation.y = 0;
+                rotationVector.y = 0;
+            }
+            if(horizontal == -1){
+                rotationVector.y = 180;
+                // playerModel.Transform.rotation.y = 180;
+            }
+            playerModel.transform.rotation = Quaternion.Euler(rotationVector);
         }
         //Lane Movement
         if(gameMode == 1){
@@ -125,12 +136,19 @@ public class playerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.name == "1Trigger"){
+            GameObject.Find("UICanvas").GetComponent<UIScript>().showRunnerScreen();
             SideCam.SetActive(false);
             BackCam.SetActive(true);
             gameMode = 1;
         }
         if(other.gameObject.name == "endPoint"){
             GameObject.Find("UICanvas").GetComponent<UIScript>().showEndScreen();
+        }
+        if(other.gameObject.tag == "autoSpawnTrigger"){
+            if(gameMode==1){
+                Debug.Log("Triggered");
+                GameObject.Find("levelManager").GetComponent<roadSpawner>().moveRoad();
+            }            
         }
     }
 

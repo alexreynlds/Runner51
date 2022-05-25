@@ -17,10 +17,12 @@ public class UIScript : MonoBehaviour
     public GameObject inGame;
     public GameObject deathScreen;
     public GameObject endScreen;
+    public GameObject runnerScreen;
     public GameObject pauseScreen;
 
     int score = 0;
     bool isPaused;
+    bool runnerActive;
 
     float currentTime = 0f;
     // Start is called before the first frame update
@@ -49,11 +51,15 @@ public class UIScript : MonoBehaviour
     public void pauseGame(){
         if(isPaused){
             isPaused = false;
+            runnerScreen.SetActive(false);
             pauseScreen.SetActive(false);
             inGame.SetActive(true);
             Time.timeScale = 1;
         } else{
             isPaused = true;
+            if(runnerActive){
+                runnerScreen.SetActive(true);
+            }
             pauseScreen.SetActive(true);
             inGame.SetActive(false);
             Time.timeScale = 0;
@@ -64,6 +70,7 @@ public class UIScript : MonoBehaviour
         Time.timeScale = 0;
         levelManager.calcScore();
         inGame.SetActive(false);
+        runnerScreen.SetActive(false);
         endScreen.SetActive(true);
         GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
         GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
@@ -94,8 +101,13 @@ public class UIScript : MonoBehaviour
 
     public void showDeathScreen(){
         inGame.SetActive(false);
+        runnerScreen.SetActive(false);
         deathScreen.SetActive(true);
+    }
 
+    public void showRunnerScreen(){
+        runnerActive = true;
+        runnerScreen.SetActive(true);
     }
 
     public void returnToMenu(){

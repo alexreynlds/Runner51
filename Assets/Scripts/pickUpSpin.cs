@@ -36,6 +36,27 @@ public class pickUpSpin : MonoBehaviour
                 GameObject.Find("Player").GetComponent<playerController>().lives++;
                 soundEffect.Play();
             }
+            if (pickUp.gameObject.tag == "2X Speed")
+            {
+                GameObject.Find("Player").GetComponent<playerController>().speed += 12;
+                soundEffect.Play();
+            }
+            if (pickUp.gameObject.tag == "Point Multiplier")
+            {
+                int multiplier = GameObject.Find("Player").GetComponent<playerController>().atoms;
+                GameObject.Find("Player").GetComponent<playerController>().atoms += multiplier;
+                soundEffect.Play();
+            }
+            if (pickUp.gameObject.tag == "Shield")
+            {
+                GameObject.Find("Player").GetComponent<playerController>().shield += 1;
+                soundEffect.Play();
+            }
+            if (pickUp.gameObject.tag == "Time-cut")
+            {
+                GameObject.Find("levelManager").GetComponent<levelManager>().currentTime -= 30;
+                soundEffect.Play();
+            }
             Destroy(soundEffect.gameObject, 1f);
             Destroy(pickUp, 0.05f);
         }

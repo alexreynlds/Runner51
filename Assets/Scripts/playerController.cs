@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour
     public int lives;
     public int startLives;
     public int atoms;
+    public int shield;
     string highScoreKey = "HighScore";
 
     public int gameMode;
@@ -51,6 +52,7 @@ public class playerController : MonoBehaviour
         lives = PlayerPrefs.GetInt("playerLives");
         startLives = PlayerPrefs.GetInt("playerLives");
         atoms = PlayerPrefs.GetInt(highScoreKey,0);
+        shield = 0;
         player = GameObject.Find("Player");
 
         GameObject startPoint = GameObject.Find("startPoint");
@@ -149,11 +151,19 @@ public class playerController : MonoBehaviour
         }
         if(other.gameObject.tag == "Cactus"){
             doDeath();
-        }        
-        if(other.gameObject.tag == "enemyBody"){
-            doDeath();
         }
-        if(other.gameObject.tag == "enemyHead"){
+        if (other.gameObject.tag == "enemyBody")
+        {
+            if (shield > 0)
+            {
+                shield--;//prevents death
+            }
+            else
+            {
+                doDeath();
+            }
+        }
+        if (other.gameObject.tag == "enemyHead"){
             Destroy(other.transform.parent.gameObject);
             atoms++;
         }

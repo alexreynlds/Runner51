@@ -20,7 +20,7 @@ public class levelManager : MonoBehaviour
     public int levelHighScore;
     public int level;
 
-    float currentTime = 0f;
+    public float currentTime = 0f;
 
     //Variables to create score
     public int atomScore;

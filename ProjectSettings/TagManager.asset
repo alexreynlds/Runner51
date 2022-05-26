@@ -10,6 +10,10 @@ TagManager:
   - Cactus
   - enemyBody
   - enemyHead
+  - 2X Speed
+  - Point Multiplier
+  - Shield
+  - Time-cut
   layers:
   - Default
   - TransparentFX

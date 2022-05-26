@@ -70,7 +70,7 @@ public class playerController : MonoBehaviour
             rb.velocity = new Vector2(2 * speed, rb.velocity.y);
         }
 
-        if(player.transform.position.y <= -10){
+        if(player.transform.position.y <= -100){
             doDeath();
         }
     }

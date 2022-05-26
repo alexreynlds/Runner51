@@ -41,7 +41,7 @@ public class levelSelection : MonoBehaviour
         //Getting the high scores and then changing the on-screen text to match.
         score1 = PlayerPrefs.GetInt("score1", 0);
         score2 = PlayerPrefs.GetInt("score3", 0);
-        score3 = PlayerPrefs.GetInt("score6", 0);
+        score3 = PlayerPrefs.GetInt("score5", 0);
         // score4 = PlayerPrefs.GetInt("score4", 0);
         // score5 = PlayerPrefs.GetInt("score5", 0);
         // score6 = PlayerPrefs.GetInt("score6", 0);

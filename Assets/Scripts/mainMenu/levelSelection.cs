@@ -15,7 +15,7 @@ public class levelSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < 3; i++){
             string score = "score" + i;
 
         }
@@ -40,17 +40,17 @@ public class levelSelection : MonoBehaviour
         }
         //Getting the high scores and then changing the on-screen text to match.
         score1 = PlayerPrefs.GetInt("score1", 0);
-        score2 = PlayerPrefs.GetInt("score2", 0);
-        score3 = PlayerPrefs.GetInt("score3", 0);
-        score4 = PlayerPrefs.GetInt("score4", 0);
-        score5 = PlayerPrefs.GetInt("score5", 0);
-        score6 = PlayerPrefs.GetInt("score6", 0);
+        score2 = PlayerPrefs.GetInt("score3", 0);
+        score3 = PlayerPrefs.GetInt("score6", 0);
+        // score4 = PlayerPrefs.GetInt("score4", 0);
+        // score5 = PlayerPrefs.GetInt("score5", 0);
+        // score6 = PlayerPrefs.GetInt("score6", 0);
         scoreText1.text = score1.ToString();
         scoreText2.text = score2.ToString();
         scoreText3.text = score3.ToString();
-        scoreText4.text = score4.ToString();
-        scoreText5.text = score5.ToString();
-        scoreText6.text = score6.ToString();
+        // scoreText4.text = score4.ToString();
+        // scoreText5.text = score5.ToString();
+        // scoreText6.text = score6.ToString();
     }
 
     public void loadNextLevel(int level){

@@ -30,19 +30,21 @@ public class levelManager : MonoBehaviour
     void Start(){
         Time.timeScale = 1;
         player = GameObject.Find("Player");
-        currentTime = startingTime;
+        // currentTime = startingTime;
+        currentTime = 0;
         atomScore = 0;
         timeScore = 0;
     }
     //Decrease current time every second and also update the display of it
     void FixedUpdate(){
-        currentTime -= 1 *Time.deltaTime;
+        currentTime += 1 *Time.deltaTime;
         GameObject.Find("UICanvas").GetComponent<UIScript>().displayTime(currentTime);
     }
     //Calculate the total score from the atom score and the time score.
     public void calcScore(){
         atomScore = player.GetComponent<playerController>().atoms * 1000;
-        timeScore = (int)currentTime * 100;
+        timeScore = 10000 - (int)currentTime * 10;
+        if (timeScore < 0) timeScore = 0;
         levelScore = atomScore + timeScore;
     }
 }

@@ -19,8 +19,8 @@ public class playerController : MonoBehaviour
     public LayerMask groundLayer;
 
     private float horizontal;
-    private float speed = 12f;
-    private float jumpPower = 14f;
+    public float speed = 12f;
+    public float jumpPower = 14f;
 
     //==============================
     // Setting the player variables

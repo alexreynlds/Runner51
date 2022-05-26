@@ -19,6 +19,7 @@ public class UIScript : MonoBehaviour
     public GameObject endScreen;
     public GameObject runnerScreen;
     public GameObject pauseScreen;
+    public GameObject finishGameScreen;
 
     int score = 0;
     bool isPaused;
@@ -71,11 +72,17 @@ public class UIScript : MonoBehaviour
         levelManager.calcScore();
         inGame.SetActive(false);
         runnerScreen.SetActive(false);
-        endScreen.SetActive(true);
-        GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
-        GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
-        GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
         PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+        if(nextSceneLoad == SceneManager.sceneCountInBuildSettings){
+            Debug.Log("final level complete");
+            finishGameScreen.SetActive(true);
+        } else{
+            endScreen.SetActive(true);
+            GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
+            GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
+            GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
+            PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+        }
         //If the final score is greater than the current high score for the level, update it.
         int finalScore = levelManager.levelScore;
         string score = "score" + levelManager.level;

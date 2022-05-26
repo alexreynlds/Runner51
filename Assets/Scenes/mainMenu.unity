@@ -3478,7 +3478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &533667165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10289,7 +10289,7 @@ MonoBehaviour:
     Ryan
     Brewer
 
-    Paul Brewer'
+    Paul Parkes'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 285e0417f7a8f2f4e948fbf8c8d847b4, type: 2}
   m_sharedMaterial: {fileID: 7245399252580924696, guid: 285e0417f7a8f2f4e948fbf8c8d847b4, type: 2}

@@ -15,8 +15,8 @@ using UnityEngine;
 public class levelManager : MonoBehaviour
 {
     private GameObject player;
-    public float startingTime;
     public int levelScore = 0;
+    public int timesDied;
     public int levelHighScore;
     public int level;
 
@@ -25,12 +25,13 @@ public class levelManager : MonoBehaviour
     //Variables to create score
     public int atomScore;
     public int timeScore;
+    public int deathScore;
 
     //When level is loaded set the scores to 0 and set the current time (displayed) to the starting time for the level
     void Start(){
         Time.timeScale = 1;
+        timesDied = 0;
         player = GameObject.Find("Player");
-        // currentTime = startingTime;
         currentTime = 0;
         atomScore = 0;
         timeScore = 0;
@@ -44,7 +45,8 @@ public class levelManager : MonoBehaviour
     public void calcScore(){
         atomScore = player.GetComponent<playerController>().atoms * 1000;
         timeScore = 10000 - (int)currentTime * 10;
+        deathScore = 1000 * timesDied;
         if (timeScore < 0) timeScore = 0;
-        levelScore = atomScore + timeScore;
+        levelScore = (atomScore + timeScore) - deathScore;
     }
 }

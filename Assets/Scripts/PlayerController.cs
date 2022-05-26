@@ -128,7 +128,6 @@ public class playerController : MonoBehaviour
     }
 
     void Test(){
-        Debug.Log("Epic");
         doDeath();
     }
 
@@ -163,6 +162,7 @@ public class playerController : MonoBehaviour
     public void doDeath(){
         if(lives > 0){
             lives--;
+            GameObject.Find("levelManager").GetComponent<levelManager>().timesDied += 1;
             PlayerPrefs.SetInt("playerLives", lives);    
             GameObject startPoint = GameObject.Find("startPoint");
             player.transform.position = startPoint.transform.position;      

@@ -25,7 +25,6 @@ public class UIScript : MonoBehaviour
     bool isPaused;
     bool runnerActive;
 
-    float currentTime = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +36,6 @@ public class UIScript : MonoBehaviour
         livesText = GameObject.Find("livesText").GetComponent<TextMeshProUGUI>();
 
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
-
-        currentTime = levelManager.startingTime;
     }
 
     // Update is called once per frame
@@ -80,6 +77,7 @@ public class UIScript : MonoBehaviour
             endScreen.SetActive(true);
             GameObject.Find("atomsEndText").GetComponent<TextMeshProUGUI>().text=levelManager.atomScore.ToString();
             GameObject.Find("timeEndText").GetComponent<TextMeshProUGUI>().text=levelManager.timeScore.ToString();
+            GameObject.Find("deathsEndText").GetComponent<TextMeshProUGUI>().text="- " + levelManager.deathScore.ToString();
             GameObject.Find("totalEndText").GetComponent<TextMeshProUGUI>().text=levelManager.levelScore.ToString();
             PlayerPrefs.SetInt("levelAt", nextSceneLoad);
         }

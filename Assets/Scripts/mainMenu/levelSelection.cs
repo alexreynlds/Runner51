@@ -32,9 +32,7 @@ public class levelSelection : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(score1);
         levelAt = PlayerPrefs.GetInt("levelAt", 1);
-        
         for (int i = 0; i < levelButtons.Length; i++){
             if ( i + 1 > levelAt){
                 levelButtons[i].interactable = false;

@@ -1,19 +1,10 @@
-# GROUP 12 - TSE GAME PROJECT
+# Runner 51
 
-🌟 This is the repo for the unity files 🌟
+Runner 51 is one of the first project I had completed in the Unity engine and was done in a few days with a small team.
 
-❗ This project is built for Unity version 2020.3.32f1 ❗
+The game is a simple sidescrolling platformer featuring three differently styled levels each with their own hand drawn parallaxing backgrounds.
 
-### COMMITING TO THE REPO
-- All commits should include:
-  -  A short title including what what changed.
-  -  A brief description diving in what was added/taken out/changed
+The game is lacking a lot of content however due to the time span it was created in.
 
-- All commits should be done in your respective branches to avoid merge conflicts later down the line.
-  - To create a new branch you can either:
-    - run the commmand git checkout -b yourname
-    - select current branch at the top of the desktop client and create/change from there
-
-### THE MAIN BRANCH
-- The `main` branch should be for completed code
-- Once your code has been tested and reviewed by others in the team you should push it to `main`
+A video demonstation of the game can be found here: https://www.youtube.com/watch?v=7nzGVOz-jzQ&ab_channel=Alex
+The itch.io page for it can be found here: https://alexreynlds.itch.io/runner-51
